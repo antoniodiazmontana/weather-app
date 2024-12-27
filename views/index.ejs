@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <style>
+    /* General styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    /* Container styles */
+    .container {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      color: #333;
+    }
+
+    form {
+      margin: 20px 0;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 1em;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      width: 80%;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin-top: 15px;
+      font-size: 1em;
+      border: none;
+      border-radius: 4px;
+      background: #4facfe;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #00c6fb;
+    }
+
+    /* Weather display styles */
+    .weather {
+      margin-top: 20px;
+    }
+
+    .weather h2 {
+      font-size: 1.5em;
+      margin: 10px 0;
+      color: #4facfe;
+    }
+
+    .weather p {
+      font-size: 1.2em;
+      margin: 5px 0;
+    }
+
+    /* Error message */
+    .error {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Weather App</h1>
+    <form action="/weather" method="get">
+      <input type="text" name="city" placeholder="Enter city" required>
+      <button type="submit">Get Weather</button>
+    </form>
+
+    <!-- Weather data -->
+    <% if (weather) { %>
+      <div class="weather">
+        <h2>Weather in <%= weather.name %></h2>
+        <p>Temperature: <%= weather.main.temp %>°C</p>
+        <p>Condition: <%= weather.weather[0].description %></p>
+      </div>
+    <% } %>
+
+    <!-- Error message -->
+    <% if (error) { %>
+      <p class="error"><%= error %></p>
+    <% } %>
+  </div>
+</body>
+</html>
